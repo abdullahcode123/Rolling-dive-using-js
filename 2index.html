@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Infinite Number Rolling</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Helvetica, sans-serif;
+        }
+
+        #dice {
+            font-size: 320px;
+            cursor: pointer;
+        }  
+    </style>
+</head>
+<body>
+
+    <h2>Infinite Number Rolling Dice</h2>
+    <div id="dice" onclick="stopDice()"></div>
+
+    <script>
+        var dice;
+        var currentNumber = 1; // Starting number
+        var interval;
+
+        // Function to change the number
+        function changeNumber() {
+            dice.innerHTML = currentNumber;
+            currentNumber++; // Increase by 1 each time
+        }
+
+        // Function to stop rolling
+        function stopDice() {
+            clearInterval(interval);
+        }
+
+        // Start rolling when page loads
+        window.onload = function() {
+            dice = document.getElementById("dice");
+            interval = setInterval(changeNumber, 100); // Change every 100ms
+        }
+    </script>
+
+</body>
+</html>

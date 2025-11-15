@@ -1,45 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <title>Rolling Dice using js</title>
-    <style>body{
-            text-align: center;
-            font-family: Helvetica, sans-serif;
-        }
-#dice{
-    font-size: 320px;
-}  
-#dice:hover{
-    cursor: pointer;
-   
-}  
+<title>Rolling Dice with 180deg Rotate</title>
+<style>
+    body{
+        text-align: center;
+        font-family: Helvetica, sans-serif;
+    }
+
+    #dice{
+        font-size: 300px;
+        display: inline-block;
+        transition: transform 0.2s linear;
+    }
+
+    /* This class will rotate the dice */
+    .rotate {
+        transform: rotate(180deg);
+    }
 </style>
-    </head>
+</head>
 <body>
-    <div>Rolling Dice using js</div>
-     <div id="dice" onclick="stopstart()"></div>
-     <script>
-        var dice;
+
+<h2>Rolling Dice (180° Rotation)</h2>
+<div id="dice" onclick="stopstart()"></div>
+
+<script>
+var dice;
 var dices = ['&#9856;','&#9857;','&#9858;','&#9859;','&#9860;','&#9861;'];
 var stopped = true;
 var t;
+var rotated = false; // To alternate rotation direction
+
 function change(){
-   var random = Math.floor(Math.random()*6);
-   dice.innerHTML=dices[random];
+    // Toggle rotation direction (so it rotates each time)
+    rotated = !rotated;
+
+    if(rotated){
+        dice.classList.add("rotate");
+    } else {
+        dice.classList.remove("rotate");
+    }
+
+    // Change the dice number
+    var random = Math.floor(Math.random()*6);
+    dice.innerHTML = dices[random];
 }
+
 function stopstart(){
     if(stopped){
         stopped = false;
-        t = setInterval(change, 100);
-    }else{
+        t = setInterval(change, 200);
+    } else {
         clearInterval(t);
-        stopped=true;
+        stopped = true;
     }
 }
-window.onload=function(){
-    dice=document.getElementById("dice");
-    stopstart();
-}
-     </script>
-     </body>
+
+window.onload = function(){
+    dice = document.getElementById("dice");
+    dice.innerHTML = dices[0];
+};
+</script>
+
+</body>
 </html>
+
